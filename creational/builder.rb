@@ -1,20 +1,28 @@
-# Defines an instance for creating an object but letting subclasses decide which class to instantiate
-# Refers to the newly created object through a common interface
+# Implementation
+#       Defines an instance for creating an object but letting subclasses decide which 
+#       class to instantiate
+#       Refers to the newly created object through a common interface
+#
 # Builder pattern used when -
-#        1) the creation algorithm of a complex object is independent from the parts that actually compose the object
-#        2) the system needs to allow different representations for the objects that are being built
-# 
+#        1) the creation algorithm of a complex object is independent from the parts that 
+#        actually compose the object
+#        2) the system needs to allow different representations for the objects that are 
+#        being built
+#
 # Examples
 #        Vehicle Manufacturer
 #        Students Exams
 #
 # Builder and Abstract Factory
-#        The Builder design pattern is very similar, at some extent, to the Abstract Factory pattern. That's why it 
-#        is important to be able to make the difference between the situations when one or the other is used. 
-#        In the case of the Abstract Factory, the client uses the factory's methods to create its own objects. 
-#        In the Builder's case, the Builder class is instructed on how to create the object and then it is asked 
-#        for it, but the way that the class is put together is up to the Builder class, this detail making the 
-#        difference between the two patterns.
+#        The Builder design pattern is very similar, at some extent, to the Abstract Factory 
+#        pattern. That's why it is important to be able to make the difference between 
+#        the situations when one or the other is used. 
+#        In the case of the Abstract Factory, the client uses the factory's methods to 
+#        create its own objects. 
+#        In the Builder's case, the Builder class is instructed on how to create the 
+#        object and then it is asked for it, but the way that the class is put together
+#        is up to the Builder class, this detail making the difference between the 
+#        two patterns.
 #
 #[Problem] There is a an application which needs to generate different
 #          types of emails, say welcome mail or alert mail. There needs

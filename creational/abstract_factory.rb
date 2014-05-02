@@ -1,5 +1,6 @@
-# This implementation offers the interface for creating a family of related objects, without explicitly specifying 
-# their classes.
+# Implementation 
+#     should offers the interface for creating a family of related objects, without 
+#     explicitly specifying their classes.
 #
 #[Problem] There is a an application which needs to run on both Win
 #          and OSX platforms. Depending on the platform, the application
