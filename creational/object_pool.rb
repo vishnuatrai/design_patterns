@@ -1,4 +1,4 @@
-# Implementation 
+#Implementation 
 #     reuse and share objects that are expensive to create
 #     Reusable - Wraps the limited resource, will be shared by several clients 
 #     for a limited amount of time.
@@ -12,11 +12,16 @@
 #     If this actions succeds the new Reusable object will be returned to the client.
 #     3) If the pool was unable to create a new Reusable, the pool will wait until 
 #     a reusable object will be released.
-#
-# Examples - database connections
-#
-# [Collaborators]
+#[Collaborators]
 #     Reusable::{}
+#         Wraps the limited resource, will be shared by several clients for 
+#         a limited amount of time.
 #     ReusablePool::{}
+#         manage the reusable objects for use by Clients, creating and managing 
+#         a pool of objects.
 #     Client::{}
+#         uses an instance of type Reusable.
+#
+#Examples - database connections
+#
 

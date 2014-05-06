@@ -1,19 +1,26 @@
-# Implementation
+#Implementation
 #       Defines an instance for creating an object but letting subclasses decide which 
 #       class to instantiate
 #       Refers to the newly created object through a common interface
 #
-# Builder pattern used when -
+#[Collaborators]
+#           AbstractBuilder:: {EmailBuilder}
+#           ConcreteBuilder:: {DarkEmailBuilder}, {WhiteEmailBuilder}
+#           Director:: {WelcomeEmail}, {AlertEmail}
+#           Product:: {Email}
+#           Client:: {Application}
+#
+#Builder pattern used when -
 #        1) the creation algorithm of a complex object is independent from the parts that 
 #        actually compose the object
 #        2) the system needs to allow different representations for the objects that are 
 #        being built
 #
-# Examples
+#Examples
 #        Vehicle Manufacturer
 #        Students Exams
 #
-# Builder and Abstract Factory
+#Builder and Abstract Factory
 #        The Builder design pattern is very similar, at some extent, to the Abstract Factory 
 #        pattern. That's why it is important to be able to make the difference between 
 #        the situations when one or the other is used. 
@@ -39,13 +46,6 @@
 #           body and footer. Thus, any type of theme can be used by
 #           any email template, provided all themes have the same
 #           interface to create the subject, body and footer of the email.
-#
-#[Collaborators]
-#           AbstractBuilder:: {EmailBuilder}
-#           ConcreteBuilder:: {DarkEmailBuilder}, {WhiteEmailBuilder}
-#           Director:: {WelcomeEmail}, {AlertEmail}
-#           Product:: {Email}
-#           Client:: {Application}
 #
 
 class EmailBuilder

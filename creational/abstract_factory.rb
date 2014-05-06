@@ -1,6 +1,19 @@
-# Implementation 
-#     should offers the interface for creating a family of related objects, without 
-#     explicitly specifying their classes.
+#Implementation 
+#       should offers the interface for creating a family of related objects, without 
+#       explicitly specifying their classes.
+#
+#[Collaborators]
+#       AbstractFactory:: {GuiFactory}
+#           declares a interface for operations that create abstract products
+#       AbstractProduct:: {AbstractButton}
+#           declares an interface for a type of product objects
+#       ConcreteFactories:: {WinFactory}, {OsxFactory}
+#           implements operations to create concrete products.
+#       ConcreteButtons:: {WinButton}, {OsxButton}
+#           defines a product to be created by the corresponding ConcreteFactory; 
+#           it implements the AbstractProduct interface.
+#       Client:: {Application}
+#           uses the interfaces declared by the AbstractFactory and AbstractProduct classes
 #
 #[Problem] There is a an application which needs to run on both Win
 #          and OSX platforms. Depending on the platform, the application
@@ -15,13 +28,6 @@
 #           methods to return products of their families.
 #           WinButton and OsxButtons are the products that belong
 #           to Win and OSX families respectively
-#
-#[Collaborators]
-#           AbstractFactory:: {GuiFactory}
-#           AbstractProduct:: {AbstractButton}
-#           ConcreteFactories:: {WinFactory}, {OsxFactory}
-#           ConcreteButtons:: {WinButton}, {OsxButton}
-#           Client:: {Application}
 #
 
 

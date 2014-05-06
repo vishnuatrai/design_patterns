@@ -1,7 +1,7 @@
-# Implementation 
+#Implementation 
 #       should create objects without exposing the instanciation logic to the client
 #       should refers to the newly created object through a comman interface.
-#    
+#           
 # 1) The client needs a product, but instead of creating it directly using the new operator, 
 # it asks the factory object for a new product, providing the information about the type of 
 # object it needs.
@@ -10,10 +10,11 @@
 # 3) The client uses the products as abstract products without being aware about their 
 # concrete implementation.
 #
-# [Collaborators]
-#     Factory:: {CommandFactory}
-#     Products:: {PasteCommand}, {CutCommand}
-#     Client:: {Application}
+#[Collaborators]
+#       Factory:: {CommandFactory}
+#       Products:: {PasteCommand}, {CutCommand}
+#       Client:: {Application}
+#
 
 class CommandFactory
   def initialize(context)

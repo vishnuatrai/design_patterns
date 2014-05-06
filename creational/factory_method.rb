@@ -1,11 +1,25 @@
-# Also known as Virtual Constructor
-# Implementation 
+#Also known as Virtual Constructor
+#Implementation 
 #       defines a interface for creating objects, but let subclass to decide which class 
 #       to instantiate.
 #       refers to the newly created object through a common interface.
-# Example - Documents Application
+#Example - Documents Application
 #
-# Specific problems and implementation
+#[Collaborators]
+#        Product:: {Printer} 
+#           defines the interface for objects the factory method creates.
+#        ConcreteProduct::{AsciiPrinter}, {AsciiDraftPrinter}, {PostScriptPrinter} 
+#           implements the Product interface
+#        Creator::{Report}
+#           also refered as Factory because it creates the Product objects. declares 
+#           the method FactoryMethod, which returns a Product object. May call the 
+#           generating method for creating Product objects
+#        FactoryMethod::{Report#get_printer}
+#           calling this method returns a Product object
+#        ConcreteCreator::{DraftReport}, {BasicReport}
+#           overrides the generating method for creating ConcreteProduct objects
+#
+#Specific problems and implementation
 #      Definition of Creator class - If we apply the pattern to an already written 
 #      code there may be problems with the way we have the Creator class already defined. 
 #      There are two cases:
@@ -19,7 +33,7 @@
 #      always be able to modify the class of the objects that the Creator class implicitly 
 #      creates, redefining the generation method.
 #
-# Drawbacks and Benefits - 
+#Drawbacks and Benefits - 
 #     1) The main reason for which the factory pattern is used is that it introduces a 
 #     separation between the application and a family of classes (it introduces weak 
 #     coupling instead of tight coupling hiding concrete classes from the application). 
@@ -31,14 +45,6 @@
 #     can easily replace the original objects, configuring the factory to create them.
 #     3) The factory has to be used for a family of objects. If the classes doesn't extend 
 #     common base class or interface they can not be used in a factory design template.
-#
-# [Collaborators]
-#     Product:: {Printer}
-#     ConcreteProduct::{AsciiPrinter}, {AsciiDraftPrinter}, {PostScriptPrinter}
-#     Creator::{Report}
-#     FactoryMethod::{Report#get_printer}
-#     ConcreteCreator::{DraftReport}, {BasicReport}
-#
 #
 class Printer
   def print_header(header)
