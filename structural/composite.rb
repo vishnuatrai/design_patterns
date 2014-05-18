@@ -35,3 +35,96 @@
 #       So decorators will have to support the Component interface with operations like 
 #       Add, Remove, and GetChild.
 #
+class Task
+  attr_accessor :name, :parent
+
+  def initialize(name)
+    @name = name
+    @parent = nil
+  end
+
+  def get_time_required
+    0.0 
+  end
+
+  def total_number_basic_tasks
+    1
+  end
+end
+
+class AddDryIngredientsTask < Task
+  def initialize
+    super('Add dry ingredients')
+  end
+
+  def get_time_required
+    1.0
+  end
+end
+
+class AddLiquidTask < Task
+  def initialize
+    super('Add Liquid Task')
+  end
+
+  def get_required_time
+    2.0
+  end
+end
+
+class MixTask < Task
+  def initialize
+    super('Mix that batter up!')
+  end
+
+  def get_time_required
+    3.0
+  end
+end
+
+class CompositeTask < Task
+  def initialize(name)
+    super(name)
+    @sub_tasks = []
+  end
+
+  def <<(task)
+    @sub_tasks << task
+    task.parent = self
+  end
+
+  def remove_sub_task(task)
+    @sub_tasks.delete(task)
+    task.parent = nil
+  end
+
+  def [](index)
+    @sub_tasks[index]
+  end
+
+  def get_time_required
+    time = 0.0
+    @sub_tasks.each { |task| time += task.get_time_required }
+    time
+  end
+
+  def total_number_basic_tasks
+    total = 0
+    @sub_tasks.each { |task| total += task.total_number_basic_tasks }
+    total
+  end
+end
+
+class MakeBatterTask < CompositeTask
+  def initialize
+    super('Make Batter')
+    @sub_tasks = []
+    self.<<(AddDryIngredientsTask.new)
+    self.<<(AddLiquidTask.new)
+    self.<<(MixTask.new)
+  end
+end
+
+main_task = MakeBatterTask.new
+puts "The main task will take #{main_task.get_time_required} minutes"
+

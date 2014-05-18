@@ -44,3 +44,112 @@
 #           the coupling between the context and strategies is tighter that the coupling between 
 #           the abstraction and implementation in the bring pattern.
 #
+class HTMLFormatter
+  def output_report(context)
+    puts '<html>'
+    puts ' <head>'
+    puts " <title>#{context.title}</title>"
+    puts ' </head>'
+    puts ' <body>'
+    context.text.each do |line|
+      puts "    <p>#{line}</p>"
+    end
+    puts '  </body>'
+    puts '</html>'
+  end
+end
+
+class PlainTextFormatter
+  def output_report(context)
+    puts "***** #{context.title} *****"
+    context.text.each do |line|
+      puts line
+    end
+  end
+end
+
+class Report
+  attr_reader :title, :text
+  attr_accessor :formatter
+
+  def initialize(formatter)
+    @title = 'Monthly Report'
+    @text =  ['Things are going', 'really, really well.']
+    @formatter = formatter
+  end
+
+  def output_report
+    @formatter.output_report(self)
+  end
+end
+
+report = Report.new(HTMLFormatter.new)
+report.output_report
+
+# Change the formatter at runtime
+report.formatter = PlainTextFormatter.new
+report.output_report
+
+# Using Procs
+HTML_FORMATTER = lambda do |context|
+  puts '<html>'
+  puts ' <head>'
+  puts " <title>#{context.title}</title>"
+  puts ' </head>'
+  puts ' <body>'
+  context.text.each do |line|
+    puts " <p>#{line}</p>"
+  end
+  puts ' </body>'
+  puts '</html>'
+end
+
+PLAIN_TEXT_FORMATTER = lambda do |context|
+  puts "***** #{context.title} *****"
+  context.text.each do |line|
+    puts line
+  end
+end
+
+class Report
+  attr_reader :title, :text
+  attr_accessor :formatter
+
+  def initialize(&formatter)
+    @title = 'Monthly Report'
+    @text = ['Things are going', 'really, really well.']
+    @formatter = formatter
+  end
+
+  def output_report
+    @formatter.call(self)
+  end
+end
+
+report = Report.new(&HTML_FORMATTER)
+report.output_report
+
+# Change the formatter at runtime
+report.formatter = PLAIN_TEXT_FORMATTER
+report.output_report
+
+# For added flexibility, we can use an on-the-fly code block as a formatter
+report = Report.new do |context|
+  puts("==== on-the-fly formatter 1 ===")
+  puts("==== #{context.title} ===")
+  context.text.each do |line|
+    puts(line)
+  end
+end
+report.output_report
+
+
+report.formatter = lambda do |context|
+  puts("==== on-the-fly formatter 2 ===")
+  puts("==== #{context.title} ===")
+  context.text.each do |line|
+    puts(line)
+  end
+end
+report.output_report
+
