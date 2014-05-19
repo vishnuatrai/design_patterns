@@ -47,7 +47,7 @@ class PointPolar
   end
 
   def rotate(ang)
-    @angle += @ang % 360;
+    @angle += ang % 360;
   end
 
   def to_s
@@ -74,8 +74,8 @@ class Point
 
   def rotate(angle, point_obj)
     x = @pc.getX() - point_obj.pc.getX()
-    y = @pc.getY() - o.pc.getY()
-    pp = PointPolar.new( Math.sqrt(x*x+y*y), Math.atan2(y,x)*180/Math.PI )
+    y = @pc.getY() - point_obj.pc.getY()
+    pp = PointPolar.new( Math.sqrt(x*x+y*y), Math.atan2(y,x)*180/Math::PI )
     
     #4. Wrapper maps
     pp.rotate( angle )
@@ -84,8 +84,8 @@ class Point
     r = r.to_f
     a = a.to_f
 
-    @pc = PointCarte.new(r*Math.cos(a*Math.PI/180) + point_obj.pc.getX(),
-                         r*Math.sin(a*Math.PI/180) + point_obj.pc.getY() )
+    @pc = PointCarte.new(r*Math.cos(a*Math::PI/180) + point_obj.pc.getX(),
+                         r*Math.sin(a*Math::PI/180) + point_obj.pc.getY() )
   end
 end
 
