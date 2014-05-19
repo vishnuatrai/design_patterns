@@ -84,5 +84,5 @@ end
 
 time1  = BasicTime.new("10","30")
 time2  = TimeWithMeridian.new("10","30","PM")
-[time1, time2].each { |t| puts t }
+[time1, time2].each { |t| puts t.to_s }
 
