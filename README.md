@@ -21,3 +21,14 @@ topic:
 
 * Dependency inversion principle: depend upon abstractions, do not depend upon concretions. High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions
 
+
+
+References
+
+1) http://www.oodesign.com
+
+2) http://sourcemaking.com
+
+3) http://blog.rubybestpractices.com
+
+4) https://practicingruby.com
