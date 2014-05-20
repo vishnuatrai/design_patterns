@@ -41,3 +41,86 @@
 #            between observers and subjects or subject. It's very probable to have new observable objects added. 
 #            On the other side in the mediator pattern the mediator class is the the most likely class to 
 #            be inherited.
+#
+class IColleague
+  def send_message(mediator, message)
+
+  end
+
+  def receive_message(message)
+
+  end
+end
+
+class ConcreteColleague < IColleague
+  def initialize(name)
+    @name = name
+  end
+
+  def send_message(mediator, message)
+    mediator.distribute_message(self, message)
+  end
+
+  def receive_message(message)
+    puts "#{@name} received #{message}"
+  end
+end
+
+class IMediator
+  def distribute_message(sender, message)
+
+  end
+
+  def register(colleague)
+
+  end
+end
+
+class ConcreteMediator < IMediator
+  def initialize()
+    @colleague_list = []
+  end
+
+  def register(colleague)
+    @colleague_list << colleague
+  end
+
+  def distribute_message(sender, message)
+    @colleague_list.each do |colleague|
+      if(colleague != sender) # Dont need to send message to sender itself
+        colleague.receive_message(message)
+      end
+    end
+  end
+end
+
+class Application
+  def run
+    #list of participants
+    colleagueA = ConcreteColleague.new("ColleagueA")
+    colleagueB = ConcreteColleague.new("Colleagueb")
+    colleagueC = ConcreteColleague.new("ColleagueC")
+    colleagueD = ConcreteColleague.new("ColleagueD")
+
+    #first mediator
+    mediator1 = ConcreteMediator.new
+    #participants registers to the mediator
+    mediator1.register(colleagueA)
+    mediator1.register(colleagueB)
+    mediator1.register(colleagueC)
+    #participantA sends out a message
+    colleagueA.send_message(mediator1, "MessageX from ColleagueA")
+
+    #second mediator
+    mediator2 = ConcreteMediator.new
+    #participants registers to the mediator
+    mediator2.register(colleagueB)
+    mediator2.register(colleagueD)
+    #participantB sends out a message
+    colleagueB.send_message(mediator2, "MessageY from ColleagueB")
+
+  end
+end
+
+app = Application.new
+app.run

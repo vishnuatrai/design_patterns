@@ -90,7 +90,7 @@ private
     prefix = ""
 
     if rand(2) == 1
-      prefix = "おいしい"
+      prefix = "my"
     end
 
     return prefix + @@fruits_name[rand(@@fruits_name.size)]
