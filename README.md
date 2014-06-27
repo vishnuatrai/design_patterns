@@ -1,3 +1,12 @@
+    A design pattern is a reusable software solution
+
+A design pattern is a reusable software solution to a specific type of problem that occurs frequently when developing software. Over the many years of practicing software development, experts have figured out ways of solving similar problems. These solutions have been encapsulated into design patterns. So:
+
+    patterns are proven solutions to software development problems
+    patterns are scalable as they usually are structured and have rules that you should follow
+    patterns are reusable for similar problems
+
+
 SOLID is a collection of five object oriented design principles that go nicely
 together. Here’s a super brief summary pulled from the wikipedia page on the
 topic:
